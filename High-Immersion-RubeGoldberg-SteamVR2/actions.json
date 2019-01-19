@@ -41,6 +41,18 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/default/in/ShowMenu",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Joystick",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/SpawnObject",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -77,7 +89,7 @@
   "action_sets": [
     {
       "name": "/actions/default",
-      "usage": "single"
+      "usage": "leftright"
     },
     {
       "name": "/actions/platformer",

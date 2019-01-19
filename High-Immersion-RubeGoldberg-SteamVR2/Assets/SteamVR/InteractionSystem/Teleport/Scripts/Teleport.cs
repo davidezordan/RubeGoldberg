@@ -870,6 +870,9 @@ namespace Valve.VR.InteractionSystem
 			if ( teleportPoint != null )
 			{
 				teleportPosition = teleportPoint.transform.position;
+				if (forcePlayerHeight) {
+					teleportPosition = new Vector3(teleportPoint.transform.position.x, player.trackingOriginTransform.position.y, teleportPoint.transform.position.z);
+				}
 
 				//Teleport to a new scene
 				if ( teleportPoint.teleportType == TeleportPoint.TeleportPointType.SwitchToNewScene )

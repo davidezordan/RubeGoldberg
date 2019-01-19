@@ -1,5 +1,6 @@
 {
-   "app_key" : "application.generated.unity.steamvr.exe",
+   "alias_info" : {},
+   "app_key" : "application.generated.unity.vrnd_c8a_projectassetpack.exe",
    "bindings" : {
       "/actions/buggy" : {
          "sources" : [
@@ -199,7 +200,10 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/teleport"
+                     "output" : "/actions/default/in/showmenu"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/showmenu"
                   }
                },
                "mode" : "button",
@@ -236,6 +240,18 @@
                },
                "mode" : "trigger",
                "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/spawnobject"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/joystick"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/joystick"
             }
          ]
       },
@@ -270,5 +286,7 @@
    },
    "controller_type" : "oculus_touch",
    "description" : "",
-   "name" : "oculus_touch"
+   "name" : "oculus_touch_custom",
+   "options" : {},
+   "simulated_actions" : []
 }
