@@ -20,7 +20,7 @@ Have fun!
 ## Getting Started
 
 # Build and Test
-It's possible to test the project using Unity. A build targetinng SteamVR and Oculus Rift is available in the "Build.zip" archive.
+It's possible to test the project using Unity. A build targeting SteamVR and Oculus Rift is available in the "Build.zip" archive.
 
 # Using Unity
 Scenes required (the order should be respected):
