@@ -2,10 +2,12 @@
 ## Davide Zordan
 
 This project implements a game targeting Oculus Rift and touch controllers using the SteamVR Unity plugin.
-The goal is to use the controllers to control the ball and collect all the stars available in the environment.
-Only one launch is available from the platform, and with it the goal needs to be reached after collecting all the stars available.
-Some helpers objects are available to construct a path for complete the game.
-Teleportation is also available using the left triggers.
+The goal is to collect all the stars available in the environment with a single launch of the ball from the platform.
+Some helpers objects are available to construct a path for completing the game including: 2 types of planks, a fan, a trampoline and teleportation platforms for the ball!
+
+The user can navigate the environment using the Oculus touch controllers and teleportation using the left hand controller thumbstick.
+The object selection menu can be activated with the right thumbstick.
+Trigger controls permit to interact and interact with objects using the trigger buttons.
 
 Have fun!
 
@@ -17,7 +19,7 @@ Have fun!
 ## Getting Started
 
 # Build and Test
-It's possible to test the project using Unity. A build targetinng SteamVR and Oculus Rift is available in the "Build" folder.
+It's possible to test the project using Unity. A build targetinng SteamVR and Oculus Rift is available in the "Build_OculusRift" folder.
 
 # Using Unity
 Scenes required (the order should be respected):
