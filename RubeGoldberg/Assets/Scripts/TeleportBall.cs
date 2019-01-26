@@ -15,6 +15,8 @@ public class TeleportBall : MonoBehaviour {
     }
 
 	void Start () {
+        ballRigidbody = GetComponent<Rigidbody>();
+
         Initialize();
 	}
 
@@ -24,6 +26,7 @@ public class TeleportBall : MonoBehaviour {
         if (teleportOut && other.CompareTag("BallTeleportTarget")) {
             gameObject.SetActive(false);
             gameObject.transform.position = teleportOut.transform.position;
+            ballRigidbody.velocity = new Vector3(0, ballRigidbody.velocity.y, 0);
             gameObject.SetActive(true);            
         }
     }

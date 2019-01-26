@@ -86,6 +86,8 @@ public class RubeGoldbergGameManager : MonoBehaviour {
 			ShowWinUI();
 
 			LoadNextLevel();
+		} else {
+			ResetCollectableItems();
 		}
 	}
 
