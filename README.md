@@ -1,7 +1,7 @@
 ﻿# Rube Goldberg challenge
 ## Davide Zordan
 
-This project implements a game targeting Oculus Rift using the SteamVR SDK.
+This project implements a game targeting Oculus Rift and touch controllers using the SteamVR Unity plugin.
 The goal is to use the controllers to control the ball and collect all the stars available in the environment.
 Only one launch is available from the platform, and with it the goal needs to be reached after collecting all the stars available.
 Some helpers objects are available to construct a path for complete the game.
