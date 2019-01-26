@@ -3,7 +3,7 @@
 
 This project implements a game targeting Oculus Rift and touch controllers using the SteamVR Unity plugin.
 
-The goal is to collect all the stars available in the environment with a single launch of the ball from the platform.
+The goal is to collect all the stars available in the environment with a single launch of the ball from the platform and then reach the goal target.
 Some helpers objects are available to construct a path for completing the game including: 2 types of planks, a fan, a trampoline and teleportation platforms for the ball!
 
 The user can navigate the environment using the Oculus touch controllers and teleportation using the left hand controller thumbstick.
