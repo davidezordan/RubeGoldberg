@@ -34,4 +34,4 @@ Scenes required (the order should be respected):
 
 # Versions Used
 - [Unity LTS Release 2017.4.15](https://unity3d.com/unity/qa/lts-releases?version=2017.4)
-- [SteamVR Unity plugin v2.2RC3](https://github.com/ValveSoftware/steamvr_unity_plugin/tree/master/Assets/SteamVR)
+- [SteamVR Unity plugin v2.2RC4](https://github.com/ValveSoftware/steamvr_unity_plugin/tree/master/Assets/SteamVR)
