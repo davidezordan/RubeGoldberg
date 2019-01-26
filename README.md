@@ -10,6 +10,9 @@ Teleportation is also available using the left triggers.
 Have fun!
 
 ![Screenshot](Screenshot.png)
+![Touch controllers input](Screenshot-1.png)
+![Teleportation](Screenshot-2.png)
+![Positioning Objects](Screenshot-3.png)
 
 ## Getting Started
 
