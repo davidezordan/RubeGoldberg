@@ -6,6 +6,31 @@ using UnityEngine.SceneManagement;
 using Valve.VR;
 
 public class BallReset : MonoBehaviour {
+	private Vector3 originalPosition;
+
+	private Renderer ballRenderer;
+
+	private RubeGoldbergGameManager gameManager;
+
+	private Rigidbody ballRigidBody;
+
+	private bool isValidarea;
+
+	private string tagNameGround = "Ground";
+
+	private string tagNameGoalTarget = "GoalTarget";
+
+	private string tagNameCollectable = "Collectable";
+
+	private string tagNameStructure = "Structure";
+
+	private string tagNamePlatform = "Platform";
+
+	private AudioSource audioSource;
+
+	private TeleportBall teleportBall;
+
+
 	[Tooltip("The game manager")]
 	public GameObject GameManagerContainer;
 
@@ -27,20 +52,13 @@ public class BallReset : MonoBehaviour {
 	[Tooltip("Inactive Ball Material")]
 	public Material BallInactiveMaterial;
 
-	private Vector3 originalPosition;
+	public AudioClip ballHitGroundSound;
 
-	private Renderer ballRenderer;
+	public AudioClip ballHitStructureSound;
 
-	private RubeGoldbergGameManager gameManager;
+	public AudioClip ballHitGoalTargetSound;
 
-	private bool isValidarea;
-
-	private string tagNameGround = "Ground";
-
-	private string tagNameGoalTarget = "GoalTarget";
-
-	private string tagNameGoalCollectable = "Collectable";
-
+	public AudioClip ballHitUnknownSound;
 
 	void Start () {
 		originalPosition = transform.position;
@@ -48,6 +66,12 @@ public class BallReset : MonoBehaviour {
 		ballRenderer = gameObject.GetComponent<Renderer>();
 
 	    gameManager = GameManagerContainer.GetComponent<RubeGoldbergGameManager>();
+
+		ballRigidBody = GetComponent<Rigidbody>();
+
+		audioSource = GetComponent<AudioSource>();
+
+		teleportBall = GetComponent<TeleportBall>();
 	}
 
 	void OnCollisionEnter (Collision other)
@@ -59,14 +83,12 @@ public class BallReset : MonoBehaviour {
 			if (gameManager.isNewLevelLoading()) {
 				return;
 			}
-			
-            transform.position = originalPosition;
 
-			var rigidbody = GetComponent<Rigidbody>();
-			if (rigidbody) {
-				rigidbody.velocity = Vector3.zero;
-				rigidbody.angularVelocity = Vector3.zero; 
-			}
+			audioSource.PlayOneShot(ballHitGroundSound);
+
+			teleportBall.Initialize();
+			
+			ResetBallPosition();
 
 			gameManager.ResetCollectableItems();
 
@@ -76,18 +98,45 @@ public class BallReset : MonoBehaviour {
 		if(other.gameObject.CompareTag(tagNameGoalTarget))
         {
 			gameManager.GoaltargetReached();
+
+			audioSource.PlayOneShot(ballHitGoalTargetSound);
+
+			ResetBallPosition();
+			return;
         }
+
+		if(other.gameObject.CompareTag(tagNameStructure) )
+        {
+			audioSource.PlayOneShot(ballHitStructureSound);
+			return;
+        }
+
+		if(other.gameObject.CompareTag(tagNamePlatform) )
+        {
+			return;
+        }
+
+		audioSource.PlayOneShot(ballHitUnknownSound);
     }
 
 	void OnTriggerEnter(Collider other) {
 		DebugManager.Info("Trigger detected: " + other.gameObject.tag);
 
-		if(other.gameObject.CompareTag(tagNameGoalCollectable))
+		if(other.gameObject.CompareTag(tagNameCollectable))
         {
 			gameManager.IncrementCollectableItemsCount();
 			other.gameObject.SetActive(false);
 			return;
         }
+	}
+
+	private void ResetBallPosition() {
+		transform.position = originalPosition;
+
+		if (ballRigidBody) {
+			ballRigidBody.velocity = Vector3.zero;
+			ballRigidBody.angularVelocity = Vector3.zero; 
+		}
 	}
 
 	void Update() {

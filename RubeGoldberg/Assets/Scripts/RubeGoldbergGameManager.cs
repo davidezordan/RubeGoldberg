@@ -4,8 +4,6 @@ using UnityEngine;
 using Valve.VR;
 
 public class RubeGoldbergGameManager : MonoBehaviour {
-	private int collectableItemsCount;
-
 	private bool isLoading;
 
 	[Tooltip("Next level scene name")]
@@ -17,15 +15,31 @@ public class RubeGoldbergGameManager : MonoBehaviour {
 	[Tooltip("Number of targets to be collected for passing the level")]
 	public List<GameObject> CollectableItems;
 
+	
+	[Tooltip("Ball")]
+	public GameObject Ball;
+
+	private AudioSource audioSource;
+
+	public AudioClip collectableItemSound;
+
+	private int collectableItemsCount;
+
 	public bool isNewLevelLoading() {
 		return isLoading;
 	}
 
 	void Start() {
 		HideWInUI();
+
+		audioSource = GetComponent<AudioSource>();
+
+		ResetCollectableItems();
 	}
 
 	public void LoadNextLevel() {
+		Object.Destroy(Ball);
+
 		StartCoroutine(LoadSceneAsync());
 	}
 
@@ -60,13 +74,13 @@ public class RubeGoldbergGameManager : MonoBehaviour {
 			item.SetActive(true);
 		}
 
-		collectableItemsCount = 2;
+		collectableItemsCount = 0;
     }
 
 	public void GoaltargetReached() {
 		DebugManager.Info("GameManager - GoaltargetReached() - Collectable items: " + collectableItemsCount);
 
-		if (collectableItemsCount == CollectableItems.Count) {
+		if (collectableItemsCount >= CollectableItems.Count) {
 			isLoading = true;
 
 			ShowWinUI();
@@ -76,6 +90,10 @@ public class RubeGoldbergGameManager : MonoBehaviour {
 	}
 
 	public void IncrementCollectableItemsCount() {
+		DebugManager.Info("GameManager - IncrementCollectableItemsCount() - Collectable items: " + collectableItemsCount);
+
 		collectableItemsCount++;
+
+		audioSource.PlayOneShot(collectableItemSound);
 	}
 }

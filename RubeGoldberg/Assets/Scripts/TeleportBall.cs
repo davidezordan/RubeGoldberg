@@ -7,11 +7,15 @@ public class TeleportBall : MonoBehaviour {
 
     private GameObject teleportOut;
 
-	void Start () {
+    public void Initialize() {
         var teleports = GameObject.FindGameObjectsWithTag("BallTeleportTargetOut");
         if (teleports.Length > 0) {
             teleportOut = teleports[0];
-        }
+        }        
+    }
+
+	void Start () {
+        Initialize();
 	}
 
     void OnTriggerEnter(Collider other) {
