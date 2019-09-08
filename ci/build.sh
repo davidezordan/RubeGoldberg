@@ -13,12 +13,9 @@ ${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x2
   -quit \
   -batchmode \
   -buildTarget $BUILD_TARGET \
-  -customBuildTarget $BUILD_TARGET \
-  -customBuildName $BUILD_NAME \
-  -customBuildPath $BUILD_PATH \
-  -customBuildOptions AcceptExternalModificationsToPlayer \
   -executeMethod BuildCommand.PerformBuild \
-  -logFile
+  -buildOutput ../Builds/$BUILD_TARGET/$BUILD_NAME.exe \
+  -logFile /dev/stdout
 
 UNITY_EXIT_CODE=$?
 
