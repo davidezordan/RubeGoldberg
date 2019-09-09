@@ -1,5 +1,7 @@
 ﻿# Rube Goldberg challenge
-## Davide Zordan
+### Davide Zordan
+
+[![pipeline status](https://gitlab.com/davidezordan/RubeGoldberg/badges/master/pipeline.svg)](https://gitlab.com/davidezordan/RubeGoldberg/commits/master)
 
 This project implements a game targeting Oculus Rift and touch controllers using the SteamVR Unity plugin.
 
