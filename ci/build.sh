@@ -13,8 +13,11 @@ ${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x2
   -quit \
   -batchmode \
   -buildTarget $BUILD_TARGET \
+  -customBuildTarget $BUILD_TARGET \
+  -customBuildName $BUILD_NAME \
+  -customBuildPath $BUILD_PATH \
+  -customBuildOptions AcceptExternalModificationsToPlayer \
   -executeMethod BuildCommand.PerformBuild \
-  -buildOutput ../Builds/$BUILD_TARGET/$BUILD_NAME.exe \
   -logFile /dev/stdout
 
 UNITY_EXIT_CODE=$?
@@ -29,5 +32,6 @@ else
   echo "Unexpected exit code $UNITY_EXIT_CODE";
 fi
 
+ls -la
 ls -la $BUILD_PATH
 [ -n "$(ls -A $BUILD_PATH)" ] # fail job if build folder is empty
