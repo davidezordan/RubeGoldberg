@@ -66,7 +66,7 @@ static class BuildCommand
 		if (buildTarget.ToString().ToLower().Contains("windows")) {
 			buildName = buildName + ".exe";
 		}
-		var fullBuildName = "../" + buildPath + buildName;
+		var fullBuildName = buildPath + buildName;
 		Console.WriteLine (":: Setting buildName to: " + fullBuildName);
 		return fullBuildName;
 	}
