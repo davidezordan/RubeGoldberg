@@ -119,9 +119,9 @@ static class BuildCommand
 
 		//BuildPipeline.BuildPlayer (GetEnabledScenes (), fixedBuildPath, buildTarget, GetBuildOptions ());
 		BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions.scenes = GetEnabledScenes(); //  new[] { "_Scenes/Level 1.unity" };
-        buildPlayerOptions.locationPathName = fixedBuildPath; // "Builds/StandaloneWindows64";
-        buildPlayerOptions.target = buildTarget(); // BuildTarget.StandaloneWindows64;
+        buildPlayerOptions.scenes = new[] { "_Scenes/Level 1.unity" };
+        buildPlayerOptions.locationPathName = "../Builds/StandaloneWindows64";
+        buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
         buildPlayerOptions.options = BuildOptions.None;
 		BuildPipeline.BuildPlayer(buildPlayerOptions);
 		Console.WriteLine (":: Done with build");
