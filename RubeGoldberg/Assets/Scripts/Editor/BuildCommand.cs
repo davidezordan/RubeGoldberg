@@ -71,7 +71,7 @@ static class BuildCommand
 		return fullBuildName;
 	}
 
-	static BuildOptions GetBuildOptions ()
+	static UnityEditor.BuildOptions GetBuildOptions ()
 	{
 		string buildOptions = GetArgument ("customBuildOptions");
 		return buildOptions == "AcceptExternalModificationsToPlayer" ? BuildOptions.AcceptExternalModificationsToPlayer : BuildOptions.None;
@@ -117,12 +117,11 @@ static class BuildCommand
 		var buildName = GetBuildName ();
 		var fixedBuildPath = GetFixedBuildPath(buildTarget, buildPath, buildName);
 
-		//BuildPipeline.BuildPlayer (GetEnabledScenes (), fixedBuildPath, buildTarget, GetBuildOptions ());
 		BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions.scenes = new[] { "_Scenes/Level 1.unity" };
-        buildPlayerOptions.locationPathName = "../Builds/StandaloneWindows64";
-        buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
-        buildPlayerOptions.options = BuildOptions.None;
+        buildPlayerOptions.scenes = GetEnabledScenes();
+        buildPlayerOptions.locationPathName = fixedBuildPath;
+        buildPlayerOptions.target = GetBuildTarget();
+        buildPlayerOptions.options = GetBuildOptions();
 		BuildPipeline.BuildPlayer(buildPlayerOptions);
 		Console.WriteLine (":: Done with build");
 	}
