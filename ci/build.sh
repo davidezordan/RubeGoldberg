@@ -36,4 +36,4 @@ ls -la
 ls -la $BUILD_PATH
 ls -la ./Builds
 ls -la ./$PROJECT_PATH
-#[ -n "$(ls -A $BUILD_PATH)" ] # fail job if build folder is empty
+[ -n "$(ls -A $BUILD_PATH)" ] # fail job if build folder is empty
