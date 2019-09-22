@@ -1,5 +1,5 @@
 ﻿# Rube Goldberg challenge
-## Davide Zordan
+### Davide Zordan
 
 This project implements a game targeting Oculus Rift and touch controllers using the SteamVR Unity plugin.
 
