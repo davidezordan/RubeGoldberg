@@ -56,9 +56,9 @@ test-playmode:
 
   artifacts:
     paths:
-    - ./Builds/
-  only:
-    - master
+    - ./Builds
+  # only:
+  #   - master
 
 build-StandaloneWindows64:
   <<: *build
