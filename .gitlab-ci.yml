@@ -37,15 +37,15 @@ get-license:
   script:
     - chmod +x ./ci/get_license.sh && ./ci/get_license.sh
 
-test-editmode:
-  <<: *test
-  variables:
-    TEST_PLATFORM: editmode
+# test-editmode:
+#   <<: *test
+#   variables:
+#     TEST_PLATFORM: editmode
 
-test-playmode:
-  <<: *test
-  variables:
-    TEST_PLATFORM: playmode
+# test-playmode:
+#   <<: *test
+#   variables:
+#     TEST_PLATFORM: playmode
 
 .build: &build
   stage: build_and_test
