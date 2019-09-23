@@ -33,6 +33,7 @@ jobs:
           TEST_PLATFORM: ${{ matrix.platform }}
         run: |
           chmod +x ./ci/before_script.sh
+          chmod +x ./ci/test.sh
           chmod +x ./ci/docker_test.sh && ./ci/docker_test.sh
 
   build:
