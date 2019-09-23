@@ -1,20 +1,59 @@
-name: CI
+name: Build and test a unity3d project
 
 on: [push]
 
 jobs:
-  build:
+  # get_license:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: gableroux/unity3d:2019.1.14f1
+  #     volumes:
+  #       - .:/project
 
+  #   steps:
+  #   - uses: actions/checkout@v1
+  #   - name: get license
+  #     run: ./ci/get_license.sh
+
+  test:
+    strategy:
+      matrix:
+        platform: [editmode, playmode]
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: docker://gableroux/unity3d:2017.4.27f1
-    - uses: actions/checkout@v1
-    - name: Run a one-line script test
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        # chmod +x ./ci/before_script.sh && ./ci/before_script.sh
-        chmod +x ./ci/build.sh && ./ci/build.sh
+      - uses: actions/checkout@v1
+      - name: Pull docker image
+        env:
+          IMAGE_NAME: gableroux/unity3d:2017.4.27f1
+        run: docker pull $IMAGE_NAME
+      - name: Run tests
+        env:
+          IMAGE_NAME: gableroux/unity3d:2017.4.27f1
+          UNITY_LICENSE_CONTENT: ${{ secrets.UNITY_LICENSE_CONTENT }}
+          TEST_PLATFORM: ${{ matrix.platform }}
+        run: ./ci/docker_test.sh
+
+  build:
+    strategy:
+      matrix:
+        target: [StandaloneWindows64]        
+        #target: [StandaloneWindows64, WebGL, StandaloneLinux64]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Pull docker image
+        env:
+          IMAGE_NAME: gableroux/unity3d:2017.4.27f1
+        run: docker pull $IMAGE_NAME
+      - name: Perform build
+        env:
+          IMAGE_NAME: gableroux/unity3d:2017.4.27f1
+          UNITY_LICENSE_CONTENT: ${{ secrets.UNITY_LICENSE_CONTENT }}
+          BUILD_NAME: GithubActions
+          BUILD_TARGET: ${{ matrix.target }}
+        run: ./ci/docker_build.sh
+      - uses: actions/upload-artifact@master
+        with:
+          name: ${{ matrix.target }}
+          path: ./Builds/
