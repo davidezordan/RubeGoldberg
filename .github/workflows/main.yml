@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
     - uses: docker://gableroux/unity3d:2017.4.27f1
+    - uses: actions/checkout@v1
     - name: Run a one-line script test
       run: echo Hello, world!
     - name: Run a multi-line script
