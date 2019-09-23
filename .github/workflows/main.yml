@@ -16,4 +16,5 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-        ./ci/build.sh
+        chmod +x ./ci/before_script.sh && ./ci/before_script.sh
+        chmod +x ./ci/build.sh && ./ci/build.sh
