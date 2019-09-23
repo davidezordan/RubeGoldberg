@@ -5,10 +5,10 @@ on: [push]
 jobs:
   build:
 
-    runs-on: gableroux/unity3d:2017.4.27f1
+    # runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+    - uses: docker://gableroux/unity3d:2017.4.27f1
     - name: Run a one-line script test
       run: echo Hello, world!
     - name: Run a multi-line script
