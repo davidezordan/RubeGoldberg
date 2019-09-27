@@ -32,7 +32,10 @@ jobs:
           IMAGE_NAME: gableroux/unity3d:2017.4.27f1
           UNITY_LICENSE_CONTENT: ${{ secrets.UNITY_LICENSE_CONTENT }}
           TEST_PLATFORM: ${{ matrix.platform }}
-        run: chmod +x ./ci/docker_test.sh && ./ci/docker_test.sh
+        run: |
+          chmod +x ./ci/before_script.sh
+          chmod +x ./ci/test.sh
+          chmod +x ./ci/docker_test.sh && ./ci/docker_test.sh
 
   build:
     strategy:
@@ -54,7 +57,10 @@ jobs:
           BUILD_NAME: RubeGoldberg
           PROJECT_PATH: RubeGoldberg
           BUILD_TARGET: ${{ matrix.target }}
-        run: chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh
+        run: |
+          chmod +x ./ci/before_script.sh
+          chmod +x ./ci/build.sh
+          chmod +x ./ci/docker_build.sh && ./ci/docker_build.sh
       - uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.target }}
