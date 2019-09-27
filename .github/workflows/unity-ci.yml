@@ -25,13 +25,13 @@ jobs:
       - name: Pull docker image
         env:
           IMAGE_NAME: gableroux/unity3d:2017.4.27f1
-          PROJECT_PATH: RubeGoldberg
         run: docker pull $IMAGE_NAME
       - name: Run tests
         env:
           IMAGE_NAME: gableroux/unity3d:2017.4.27f1
           UNITY_LICENSE_CONTENT: ${{ secrets.UNITY_LICENSE_CONTENT }}
           TEST_PLATFORM: ${{ matrix.platform }}
+          PROJECT_PATH: RubeGoldberg
         run: |
           chmod +x ./ci/before_script.sh
           chmod +x ./ci/test.sh
