@@ -8,6 +8,9 @@ echo "Building for $BUILD_TARGET"
 export BUILD_PATH=./Builds/$BUILD_TARGET/
 mkdir -p $BUILD_PATH
 
+ls -la
+ls -la ./$PROJECT_PATH
+
 ${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' /opt/Unity/Editor/Unity} \
   -projectPath $(pwd)/$PROJECT_PATH \
   -quit \
