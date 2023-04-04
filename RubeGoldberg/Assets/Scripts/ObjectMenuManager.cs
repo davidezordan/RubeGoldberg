@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 
 public class ObjectMenuManager : MonoBehaviour {
 
     private Dictionary<int, int> spawnCount;
 
-    private bool isSelecting;
+    // private bool isSelecting;
 
     private bool isSpawning;
 
-    private SteamVR_Input_Sources inputSource;
+    // private SteamVR_Input_Sources inputSource;
 
     [Tooltip("List of game objects for menu")]
     public List<GameObject> objectList;
@@ -39,7 +36,7 @@ public class ObjectMenuManager : MonoBehaviour {
             spawnCount[i] = 0;
         }
 
-        inputSource = SteamVR_Input_Sources.RightHand;
+        // inputSource = SteamVR_Input_Sources.RightHand;
     }
 
     public void MenuLeft()
@@ -105,40 +102,40 @@ public class ObjectMenuManager : MonoBehaviour {
     }
 	
 	void Update () {
-        HandleMenu(inputSource);
+        // HandleMenu(inputSource);
 
         if (gameObject.activeSelf) {
-            if (SteamVR_Actions.default_SpawnObject.GetState(inputSource)) {
-                SpawnCurrentObject();
-                return;
-            } else {
-                isSpawning = false;
-            }
+            // if (SteamVR_Actions.default_SpawnObject.GetState(inputSource)) {
+            //     SpawnCurrentObject();
+            //     return;
+            // } else {
+            //     isSpawning = false;
+            // }
 
-            if (Mathf.Abs(SteamVR_Actions.default_Joystick.GetAxis(inputSource).x) < menuResetTolerance) {
-                isSelecting = false;
-                HandleMenu(inputSource);
-                return;
-            }
+            // if (Mathf.Abs(SteamVR_Actions.default_Joystick.GetAxis(inputSource).x) < menuResetTolerance) {
+            //     isSelecting = false;
+            //     HandleMenu(inputSource);
+            //     return;
+            // }
 
-            if (SteamVR_Actions.default_Joystick.GetAxis(inputSource).x < -joystickTolerance && !isSelecting) {
-                StartSelection();
-                MenuLeft();
-                return;
-            }
+            // if (SteamVR_Actions.default_Joystick.GetAxis(inputSource).x < -joystickTolerance && !isSelecting) {
+            //     StartSelection();
+            //     MenuLeft();
+            //     return;
+            // }
 
-            if (SteamVR_Actions.default_Joystick.GetAxis(inputSource).x > joystickTolerance && !isSelecting) {
-                objectList[currentObject].SetActive(false);
-                isSelecting = true;
-                MenuRight();
-                return;
-            }
+            // if (SteamVR_Actions.default_Joystick.GetAxis(inputSource).x > joystickTolerance && !isSelecting) {
+            //     objectList[currentObject].SetActive(false);
+            //     isSelecting = true;
+            //     MenuRight();
+            //     return;
+            // }
         }
 	}
 
     private void StartSelection() {
         objectList[currentObject].SetActive(false);
-        isSelecting = true;        
+        // isSelecting = true;        
     }
 
     private bool AreObjectsAvailable() {
@@ -153,26 +150,26 @@ public class ObjectMenuManager : MonoBehaviour {
         return isObjectAvailable;
     }
 
-    private void HandleMenu(SteamVR_Input_Sources inputSource) {
-        if (isSelecting)
-            return;
+    // private void HandleMenu(SteamVR_Input_Sources inputSource) {
+    //     if (isSelecting)
+    //         return;
 
-        if (!AreObjectsAvailable()) {
-            DisableMenu();
-            return;
-        }
+    //     if (!AreObjectsAvailable()) {
+    //         DisableMenu();
+    //         return;
+    //     }
 
-        if (SteamVR_Actions.default_ShowMenu.GetState(inputSource)) {
-            EnableMenu();
-        } else {
-            DisableMenu();
-        }
-    }
+    //     if (SteamVR_Actions.default_ShowMenu.GetState(inputSource)) {
+    //         EnableMenu();
+    //     } else {
+    //         DisableMenu();
+    //     }
+    // }
 
     private void DisableMenu()
     {
         objectList[currentObject].SetActive(false);
-        isSelecting = false;
+        // isSelecting = false;
         isSpawning = false;
     }
 

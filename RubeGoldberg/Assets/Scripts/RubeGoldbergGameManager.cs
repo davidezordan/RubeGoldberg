@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
+// using Valve.VR;
 
 public class RubeGoldbergGameManager : MonoBehaviour {
 	private bool isLoading;
@@ -61,7 +61,7 @@ public class RubeGoldbergGameManager : MonoBehaviour {
 
 			yield return new WaitForSeconds(3);
 			
-			SteamVR_LoadLevel.Begin(NextLevel);
+			// SteamVR_LoadLevel.Begin(NextLevel);
 		}
 	}
 

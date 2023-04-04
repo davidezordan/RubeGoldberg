@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Valve.VR;
+// using Valve.VR;
 
 public class BallReset : MonoBehaviour {
 	private Vector3 originalPosition;
